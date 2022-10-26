@@ -7,6 +7,10 @@
   width: 100%;
 }
 
+legend {
+  float: left;
+}
+
 .search-bar {
   grid-area: c;
 }
