@@ -43,8 +43,14 @@ class Search extends Component {
   }
 
   searchMovie = () => {
+    const capitalizeSearchedMovie = (string) => {
+      return string.split(' ').map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1)
+      }).join(" ")
+    }
+    
     const movie = this.props.movies.find(movie => {
-      const foundMovie = movie.title === this.state.query
+      const foundMovie = movie.title === capitalizeSearchedMovie(this.state.query)
       if (foundMovie) {
         window.location.pathname = `/${movie.id}`
         return foundMovie
