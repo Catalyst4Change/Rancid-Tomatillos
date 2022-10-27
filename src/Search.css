@@ -17,6 +17,7 @@ legend {
 
 .search-input {
   width: 30vw;
+  grid-area: a;
 }
 
 .search-button {
@@ -30,15 +31,31 @@ legend {
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .filter-container {
     justify-content: center;
     align-items: center;
     display: grid;  
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 
-    'a b'
+    'a a'
+    'b1 b2'
     'c c';
+  }
+
+  legend {
+    position: absolute;
+    top: 16%;
+    left: 40%;
+    grid-area: a;
+  }
+
+  .rating-sort {
+    grid-area: b1;
+  }
+
+  .date-sort {
+    grid-area: b2;
   }
 
   .search-input {
@@ -49,6 +66,7 @@ legend {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 1%;
   }
   
 }
@@ -63,5 +81,9 @@ legend {
 
   .filter-container > div {
     margin: 2%;
+  }
+
+  legend {
+    position: inherit;
   }
 }

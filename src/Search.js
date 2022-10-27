@@ -78,11 +78,11 @@ class Search extends Component {
         <legend>Sort movies by:</legend>
         <div className='rating-sort'> 
           <input type="radio" value="average_rating" id='sort-rating' name="sort" onChange={event => this.handleChange(event)}/>
-          <label for='sort-rating'>Average Rating</label>
+          <label htmlFor='sort-rating'>Average Rating</label>
         </div>
         <div className='date-sort'>
           <input type="radio" id='sort-newset' value="release_date" name="sort" onChange={event => this.handleChange(event)}/>
-          <label for='sort-newset'>Realease Date</label>
+          <label htmlFor='sort-newset'>Realease Date</label>
         </div>
         <div className='search-bar'>
           <input
@@ -94,7 +94,7 @@ class Search extends Component {
             placeholder='Search for a movie here' 
             onChange={event => this.handleChange(event)}
           />
-          <label className='hidden' for='search-input'>movie search by name</label>
+          <label className='hidden' htmlFor='search-input'>movie search by name</label>
           <button className='search-button' onClick={event => this.submitSearch(event)}>Search</button>
           {this.state.error && <h2>Sorry! No movies were found. Please check that your spelling is correct and try again.</h2>}
         </div>
