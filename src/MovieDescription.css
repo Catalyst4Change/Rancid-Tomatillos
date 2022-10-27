@@ -27,3 +27,7 @@
   font-family: 'Metal Lady';
   padding: 10px;
 }
+
+.error-message {
+  color: white;
+}
