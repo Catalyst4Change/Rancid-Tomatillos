@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './MovieDescription.css';
 import thinking from './thinking.gif'
 
-
 class MovieDescription extends Component {
   constructor({}) {
     super()
@@ -20,7 +19,6 @@ class MovieDescription extends Component {
   }
 
   render() {
-    
     if (this.state.movie) {
       return (
         <>
