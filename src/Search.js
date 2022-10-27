@@ -86,13 +86,15 @@ class Search extends Component {
         </div>
         <div className='search-bar'>
           <input
-          className='search-input'
+            id='search-input'
+            className='search-input'
             type='text' 
             name='search' 
             value={this.state.query} 
             placeholder='Search for a movie here' 
             onChange={event => this.handleChange(event)}
           />
+          <label className='hidden' for='search-input'>movie search by name</label>
           <button className='search-button' onClick={event => this.submitSearch(event)}>Search</button>
           {this.state.error && <h2>Sorry! No movies were found. Please check that your spelling is correct and try again.</h2>}
         </div>

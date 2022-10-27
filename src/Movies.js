@@ -11,6 +11,7 @@ const Movies = ({ movies }) => {
         <img 
           className='movie-image' 
           src={movie.poster_path} 
+          alt={movie.title}
         />
       </Link>
     )

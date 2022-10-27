@@ -26,6 +26,10 @@ legend {
   font-size: 13px;
 }
 
+.hidden {
+  display: none;
+}
+
 @media screen and (max-width: 600px) {
   .filter-container {
     justify-content: center;
