@@ -17,7 +17,6 @@ class App extends Component {
     }
   }
   
-
   componentDidMount = () => {
     fetchMovies()
     .then(data => this.setState({movies: data.movies}))
@@ -34,20 +33,16 @@ class App extends Component {
 
   render() { 
     return (
-      <div className="App">
+      <main className="App">
         <h1 className='App-header'>Rancid Tomatillos</h1>
-
         <Search movies={this.state.movies} addMovie={this.addMovie} filterMovies={this.filterMovies} assignURL={this.assignURL}/>
-        {this.state.error && <h2 className='error-message'>{this.state.error}</h2>}
-        
-        {/* add loading info */}
-        {this.state.error && <h2>Error! Movies not found :( </h2>}
+        {this.state.error && <h2 className='error-message'>Error! Movies not found :( </h2>}
         {this.state.movies.length === 0 && <img src={thinking} width="100px"/>} 
         <Switch>
           <Route exact path='/' render={() => <Movies className='Movies' movies={this.state.movies} /> } />
           <Route exact path='/:id' render={({ match }) => {return <MovieDescription selectedMovie={match.params.id} /> }} />
         </Switch>
-      </div>
+      </main>
     )
   };
 }
