@@ -40,7 +40,8 @@ legend {
     grid-template-areas: 
     'a a'
     'b1 b2'
-    'c c';
+    'c c'
+    'd d';
   }
 
   legend {
@@ -87,3 +88,4 @@ legend {
     position: inherit;
   }
 }
+

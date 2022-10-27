@@ -12,15 +12,27 @@ class Search extends Component {
   }
 
   handleChange = (event) => {
-    // this.setState({ ...this.state, [event.target.name]: event.target.value})
-    if (event.target.name === 'search'){
-      this.setState({query: event.target.value})
-    } else if (event.target.value === 'average_rating') {
-      this.setState({...this.state, sort: 'average_rating'})
-      this.sortMoviesByRating()
-    } else if (event.target.value === 'release_date') {
-      this.setState({...this.state, sort: 'release_date'})
-      this.sortMoviesByDate()
+    console.log("change");
+    this.setState({ ...this.state, [event.target.name]: event.target.value})
+    setTimeout(() => {
+      this.sortMovies()
+    }, 500);
+  }
+
+  sortMovies = () => {
+    const sort = this.state.sort
+    if (sort === "release_date") {
+      const sortedMovies = this.props.movies.map(movie => {
+      const newDate = new Date(movie.release_date)
+        console.log(newDate);
+      movie.release_date = newDate
+      return movie
+      }).sort((a ,b) => b.release_date - a.release_date)
+      this.props.filterMovies(sortedMovies)
+
+    } else if (sort === "average_rating") {
+      const sortedMovies = this.props.movies.sort((a ,b) => b.average_rating - a.average_rating)
+      this.props.filterMovies(sortedMovies)
     }
   }
 
@@ -41,24 +53,6 @@ class Search extends Component {
     movie ? this.props.addMovie(movie) : this.errorMessage()
   }
 
-  sortMoviesByRating = () => {
-    const sortedMovies = this.props.movies.sort((a ,b) => { 
-      return b.average_rating - a.average_rating
-    })
-    this.props.filterMovies(sortedMovies)
-  }
-
-  sortMoviesByDate = () => {
-    const sortedMovies = this.props.movies.map(movie => {
-      const newDates = new Date(movie.release_date)
-      movie.release_date = newDates
-      return movie
-    }).sort((a ,b) => { 
-      return b.release_date - a.release_date
-    })
-    this.props.filterMovies(sortedMovies)
-  }
-
   clearInput = () => {
     this.setState({query: ''})
   }
@@ -74,31 +68,33 @@ class Search extends Component {
 
   render() {
     return (
-      <fieldset className='filter-container'>        
-        <legend>Sort movies by:</legend>
-        <div className='rating-sort'> 
-          <input type="radio" value="average_rating" id='sort-rating' name="sort" onChange={event => this.handleChange(event)}/>
-          <label htmlFor='sort-rating'>Average Rating</label>
-        </div>
-        <div className='date-sort'>
-          <input type="radio" id='sort-newset' value="release_date" name="sort" onChange={event => this.handleChange(event)}/>
-          <label htmlFor='sort-newset'>Realease Date</label>
-        </div>
-        <div className='search-bar'>
-          <input
-            id='search-input'
-            className='search-input'
-            type='text' 
-            name='search' 
-            value={this.state.query} 
-            placeholder='Search for a movie here' 
-            onChange={event => this.handleChange(event)}
-          />
-          <label className='hidden' htmlFor='search-input'>movie search by name</label>
-          <button className='search-button' onClick={event => this.submitSearch(event)}>Search</button>
-          {this.state.error && <h2>Sorry! No movies were found. Please check that your spelling is correct and try again.</h2>}
-        </div>
-      </fieldset>
+      <>
+        <fieldset className='filter-container'>        
+          <legend>Sort movies by:</legend>
+          <div className='rating-sort'> 
+            <input type="radio" value="average_rating" id='sort-rating' name="sort" onChange={event => this.handleChange(event)}/>
+            <label htmlFor='sort-rating'>Average Rating</label>
+          </div>
+          <div className='date-sort'>
+            <input type="radio" id='sort-newset' value="release_date" name="sort" onChange={event => this.handleChange(event)}/>
+            <label htmlFor='sort-newset'>Realease Date</label>
+          </div>
+          <div className='search-bar'>
+            <input
+              id='search-input'
+              className='search-input'
+              type='text' 
+              name='query' 
+              value={this.state.query} 
+              placeholder='Search for a movie here' 
+              onChange={event => this.handleChange(event)}
+              />
+            <label className='hidden' htmlFor='search-input'>movie search by name</label>
+            <button className='search-button' onClick={event => this.submitSearch(event)}>Search</button>
+          </div>
+        </fieldset>
+          {this.state.error && <h2 className='search-error-message' >Sorry! No movies were found. Please check that your spelling is correct and try again.</h2>}
+      </>
     )
   }
 }
