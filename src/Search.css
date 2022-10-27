@@ -7,6 +7,11 @@
   width: 100%;
 }
 
+form {
+  width: 100%;
+  margin-left: -4vw;
+}
+
 legend {
   float: left;
 }
@@ -25,6 +30,14 @@ legend {
   border-radius: 10%;
   color: white;
   font-size: 13px;
+}
+
+.search-error-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .hidden {
@@ -69,7 +82,6 @@ legend {
     align-items: center;
     margin: 1%;
   }
-  
 }
 
 @media screen and (max-width: 420px) {

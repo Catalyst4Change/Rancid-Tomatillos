@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Search from './Search.js';
 import Movies from "./Movies.js";
 import MovieDescription from './MovieDescription.js';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import './App.css';
 import { fetchMovies } from './apiCalls.js';
 import thinking from './thinking.gif'
+
 
 class App extends Component {
   constructor() {
@@ -34,7 +35,13 @@ class App extends Component {
   render() { 
     return (
       <main className="App">
-        <h1 className='App-header'>Rancid Tomatillos</h1>
+        <Link style={{
+          color: 'white', 
+          textDecoration: 'none', 
+          width: '100vw',}} 
+          to='/'>
+          <h1 className='App-header'>Rancid Tomatillos</h1>
+        </Link>
         <Search movies={this.state.movies} addMovie={this.addMovie} filterMovies={this.filterMovies} assignURL={this.assignURL}/>
         {this.state.error && <h2 className='error-message'>Error! Movies not found :( </h2>}
         {this.state.movies.length === 0 && <img src={thinking} width="100px"/>} 
