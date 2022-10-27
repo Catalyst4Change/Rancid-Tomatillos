@@ -74,7 +74,7 @@ class Search extends Component {
 
   render() {
     return (
-      <>
+      <form onSubmit={event => this.submitSearch(event)}>
         <fieldset className='filter-container'>        
           <legend>Sort movies by:</legend>
           <div className='rating-sort'> 
@@ -96,11 +96,11 @@ class Search extends Component {
               onChange={event => this.handleChange(event)}
               />
             <label className='hidden' htmlFor='search-input'>movie search by name</label>
-            <button className='search-button' onClick={event => this.submitSearch(event)}>Search</button>
+            <button type='submit' className='search-button'>Search</button>
           </div>
         </fieldset>
           {this.state.error && <h2 className='search-error-message' >Sorry! No movies were found. Please check that your spelling is correct and try again.</h2>}
-      </>
+      </form>
     )
   }
 }
